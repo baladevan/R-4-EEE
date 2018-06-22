@@ -7,18 +7,25 @@
 
 # To read the csv file. Naming format: Exp+Month  
 
-Exp_Nov <- read.csv (file = "/Users/BR/Desktop/R 4 EEE/R-4-EEE/DATA/Expense_44DiaryData/Cleaned_Expense_Nov.csv", header = TRUE, stringsAsFactors = FALSE)
+Exp_Dec <- read.csv (file = "/Users/BR/Desktop/R 4 EEE/R-4-EEE/DATA/Expense_44DiaryData/Cleaned_Expense_Dec.csv", header = TRUE, stringsAsFactors = FALSE)
 
 
 # To create the first half table
 
-NovExp1 <- select (Exp_Nov, record_id:exp_cmmnt3_nov15)
+DecExp1 <- select (Exp_Dec, record_id:exp_cmmnt3_dec15)
 
 # To create the second half table
 
-NovExp2 <- select (Exp_Nov, record_id:exp_cmmnt3_nov30, -(child_age:exp_cmmnt3_nov15))
+DecExp2 <- select (Exp_Dec, record_id:exp_cmmnt3_dec30, -(child_age:exp_cmmnt3_dec15))
 
 # To remove duplicates based on diary_num (Code below to store unique rows of AprExp1 in AprExp1A, and unique rows of AprExp2 in AprExp2A) 
 
-NovExp1A <- NovExp1 [!duplicated(NovExp1$diary_num), ]
-NovExp2A <- NovExp2 [!duplicated(NovExp2$diary_num), ]
+DecExp1A <- DecExp1 [!duplicated(DecExp1$diary_num), ]
+DecExp2A <- DecExp2 [!duplicated(DecExp2$diary_num), ]
+
+# To save the output as Rdata files (manually shifting the files to the Deduplicated Expense Data folder; have to write code)
+
+save (DecExp1A,file="DecExp1A.Rdata")
+save (DecExp2A,file="DecExp2A.Rdata")
+
+
