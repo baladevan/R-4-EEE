@@ -10,11 +10,11 @@
 Exp_Dec <- read.csv (file = "/Users/BR/Desktop/R 4 EEE/R-4-EEE/DATA/Expense_44DiaryData/Cleaned_Expense_Dec.csv", header = TRUE, stringsAsFactors = FALSE)
 
 
-# To create the first half table
+# To create the first half table; should be 981 columns
 
 DecExp1 <- select (Exp_Dec, record_id:exp_cmmnt3_dec15)
 
-# To create the second half table
+# To create the second half table; should be 977 or 1041 columns depending upon on 30/ 31 day month
 
 DecExp2 <- select (Exp_Dec, record_id:exp_cmmnt3_dec30, -(child_age:exp_cmmnt3_dec15))
 
@@ -27,5 +27,22 @@ DecExp2A <- DecExp2 [!duplicated(DecExp2$diary_num), ]
 
 save (DecExp1A,file="DecExp1A.Rdata")
 save (DecExp2A,file="DecExp2A.Rdata")
+.....
+# Code in one set
 
+Exp_Mar <- read.csv (file = "/Users/BR/Desktop/R 4 EEE/R-4-EEE/DATA/Expense_44DiaryData/Cleaned_Expense_Mar.csv", header = TRUE, stringsAsFactors = FALSE)
+  
+  MarExp1 <- select (Exp_Mar, record_id:exp_cmmnt3_mar15)
+  MarExp1A <- MarExp1 [!duplicated (MarExp1$diary_num), ]
+  save (MarExp1A, file="MarExp1A.Rdata")
+
+  MarExp2 <- select (Exp_Mar, record_id:exp_cmmnt3_mar31, -(child_age:exp_cmmnt3_mar15))
+    MarExp2A <- MarExp2 [!duplicated (MarExp2$diary_num), ]
+    save (MarExp2A, file="MarExp2A.Rdata")
+
+# To check dimensions - rows in the 2 files should be same, colums in first half will be 981 and 977 or 1041 for second half 
+
+dim (Exp_Mar)
+dim (MarExp1A)
+dim (MarExp2A)
 
