@@ -5,15 +5,20 @@
 # Deduplicate rows in each file and save the resultant file by adding suffix A for the first half of the month and suffix B for the second half of the month. 
 # Create a new table for aggregated end notes/ observations and other methodology related variables for all months
 
+# To read the csv file. Naming format: Exp+Month  
+
+Exp_Nov <- read.csv (file = "/Users/BR/Desktop/R 4 EEE/R-4-EEE/DATA/Expense_44DiaryData/Cleaned_Expense_Nov.csv", header = TRUE, stringsAsFactors = FALSE)
+
+
 # To create the first half table
 
-AprExp1 <- select (Exp_Apr, record_id:exp_cmmnt3_apr15)
+NovExp1 <- select (Exp_Nov, record_id:exp_cmmnt3_nov15)
 
 # To create the second half table
 
-AprExp2 <- select (Exp_Apr, record_id:exp_cmmnt3_apr30, -(child_age:exp_cmmnt3_apr15))
+NovExp2 <- select (Exp_Nov, record_id:exp_cmmnt3_nov30, -(child_age:exp_cmmnt3_nov15))
 
-# Ro remove duplicates based on diary_num (Code below to store unique rows of AprExp1 in AprExp1A, and unique rows of AprExp2 in AprExp2A) 
+# To remove duplicates based on diary_num (Code below to store unique rows of AprExp1 in AprExp1A, and unique rows of AprExp2 in AprExp2A) 
 
-AprExp1A <- AprExp1 [!duplicated(AprExp1$diary_num), ]
-AprExp2A <- AprExp2 [!duplicated(AprExp2$diary_num), ]
+NovExp1A <- NovExp1 [!duplicated(NovExp1$diary_num), ]
+NovExp2A <- NovExp2 [!duplicated(NovExp2$diary_num), ]
