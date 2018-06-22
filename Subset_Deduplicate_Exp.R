@@ -30,19 +30,25 @@ save (DecExp2A,file="DecExp2A.Rdata")
 .....
 # Code in one set
 
-Exp_Mar <- read.csv (file = "/Users/BR/Desktop/R 4 EEE/R-4-EEE/DATA/Expense_44DiaryData/Cleaned_Expense_Mar.csv", header = TRUE, stringsAsFactors = FALSE)
+Exp_May <- read.csv (file = "/Users/BR/Desktop/R 4 EEE/R-4-EEE/DATA/Expense_44DiaryData/Cleaned_Expense_May.csv", header = TRUE, stringsAsFactors = FALSE)
   
-  MarExp1 <- select (Exp_Mar, record_id:exp_cmmnt3_mar15)
-  MarExp1A <- MarExp1 [!duplicated (MarExp1$diary_num), ]
-  save (MarExp1A, file="MarExp1A.Rdata")
+  MayExp1 <- select (Exp_May, record_id:exp_cmmnt3_may15)
+  MayExp1A <- MayExp1 [!duplicated (MayExp1$diary_num), ]
+  save (MayExp1A, file = "MayExp1A.Rdata")
 
-  MarExp2 <- select (Exp_Mar, record_id:exp_cmmnt3_mar31, -(child_age:exp_cmmnt3_mar15))
-    MarExp2A <- MarExp2 [!duplicated (MarExp2$diary_num), ]
-    save (MarExp2A, file="MarExp2A.Rdata")
+  MayExp2 <- select (Exp_May, record_id:exp_cmmnt3_may31, -(child_age:exp_cmmnt3_may15))
+    MayExp2A <- MayExp2 [!duplicated (MayExp2$diary_num), ]
+    save (MayExp2A, file="MayExp2A.Rdata")
 
 # To check dimensions - rows in the 2 files should be same, colums in first half will be 981 and 977 or 1041 for second half 
 
-dim (Exp_Mar)
-dim (MarExp1A)
-dim (MarExp2A)
+dim (Exp_May)
+dim (MayExp1A)
+dim (MayExp2A)
+
+# To keep the workspace tidy, remove the halved files with duplicates. The main file for the month and the two halves are enough)
+
+remove (MayExp1, MayExp2)
+ 
+
 
