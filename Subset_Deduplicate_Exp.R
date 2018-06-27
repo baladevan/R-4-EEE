@@ -7,7 +7,7 @@
 
 # To read the csv file. Naming format: Exp+Month  
 
-Exp_Dec <- read.csv (file = "/Users/BR/Desktop/R 4 EEE/R-4-EEE/DATA/Expense_44DiaryData/Cleaned_Expense_Dec.csv", header = TRUE, stringsAsFactors = FALSE)
+Exp_Apr <- read.csv (file = "/Users/BR/Desktop/R 4 EEE/R-4-EEE/DATA/Expense_337/EEE_Exp_Apr_337.csv", header = TRUE, stringsAsFactors = FALSE)
 
 
 # To create the first half table; should be 981 columns
@@ -23,22 +23,14 @@ DecExp2 <- select (Exp_Dec, record_id:exp_cmmnt3_dec30, -(child_age:exp_cmmnt3_d
 DecExp1A <- DecExp1 [!duplicated(DecExp1$diary_num), ]
 DecExp2A <- DecExp2 [!duplicated(DecExp2$diary_num), ]
 
+# To deduplicate by a combination of 2 variables
+Dedup_DecExp <- Exp_Dec [!duplicated (Exp_Dec [c(Exp_Dec$diary_num, Exp_Dec$child_uid)]),]
+
 # To save the output as Rdata files (manually shifting the files to the Deduplicated Expense Data folder; have to write code)
 
 save (DecExp1A,file="DecExp1A.Rdata")
 save (DecExp2A,file="DecExp2A.Rdata")
 .....
-# Code in one set
-
-Exp_May <- read.csv (file = "/Users/BR/Desktop/R 4 EEE/R-4-EEE/DATA/Expense_44DiaryData/Cleaned_Expense_May.csv", header = TRUE, stringsAsFactors = FALSE)
-  
-  MayExp1 <- select (Exp_May, record_id:exp_cmmnt3_may15)
-  MayExp1A <- MayExp1 [!duplicated (MayExp1$diary_num), ]
-  save (MayExp1A, file = "MayExp1A.Rdata")
-
-  MayExp2 <- select (Exp_May, record_id:exp_cmmnt3_may31, -(child_age:exp_cmmnt3_may15))
-    MayExp2A <- MayExp2 [!duplicated (MayExp2$diary_num), ]
-    save (MayExp2A, file="MayExp2A.Rdata")
 
 # To check dimensions - rows in the 2 files should be same, colums in first half will be 981 and 977 or 1041 for second half 
 
