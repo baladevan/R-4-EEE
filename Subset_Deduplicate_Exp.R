@@ -7,7 +7,7 @@
 
 # To read the csv file. Naming format: Exp+Month  
 
-Exp_Apr <- read.csv (file = "/Users/BR/Desktop/R 4 EEE/R-4-EEE/DATA/Expense_337/EEE_Exp_Apr_337.csv", header = TRUE, stringsAsFactors = FALSE)
+Exp_May <- read.csv (file = "/Users/BR/Desktop/R 4 EEE/R-4-EEE/DATA/Expense_337/EEE_Exp_May_337.csv", header = TRUE, stringsAsFactors = FALSE)
 
 
 # To create the first half table; should be 981 columns
